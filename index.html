@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="Free Web tutorials">
+  <meta name="keywords" content="HTML,CSS,JavaScript">
+  <meta name="author" content="Roberto Muñoz Garcia">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.2.2/d3.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <title></title>
+</head>
+
+<body>
+  <div class="main">
+    <div class='container'>
+      <div id='title'>United States GDP</div>
+      <div class='chart'></div>
+    </div>
+  </div>
+  <script>
+    const w = 800;
+    const h = 400;
+    const padding = 60;
+    const svg = d3.select(".chart")
+      .append("svg")
+      .attr("width", w)
+      .attr("height", h)
+
+    d3.json('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/master/GDP-data.json', function (json) {
+      const years = json.data.map(item =>
+        parseInt(item[0].substring(0, 4))
+      );
+      const gdp = json.data.map(item =>
+        item[1]
+      );
+      const dataW = gdp.length;
+      const xScale = d3.scaleLinear()
+        .domain([d3.min(years, d => d), d3.max(years, d => d)])
+        .range([padding, w - padding]);
+
+      const yScale = d3.scaleLinear()
+        .domain([d3.min(gdp, d => d), d3.max(gdp, d => d)])
+        .range([h - padding, padding]);
+
+      svg.selectAll("rect")
+        .data(gdp)
+        .enter()
+        .append("rect")
+        .attr("x", (d, i) => i * ((w - padding * 2) / dataW) + padding)
+        .attr("y", (d, i) => (h - padding) - (((h - padding * 2) * d) / d3.max(gdp, d => d)))
+        .attr("width", (w - padding * 2) / dataW)
+        .attr("height", (d, i) => ((h - padding * 2) * d) / d3.max(gdp, d => d))
+        .attr("fill", "navy")
+        .attr("class", "bar")
+        .attr("data-gdp", (d, i) => json.data[i][1])
+        .attr("data-date", (d, i) => json.data[i][0])
+        .attr("class", "bar")
+        .append("title")
+        .text((d, i) => "$ " + json.data[i][1] + " Billion - Date: " + json.data[i][0])
+
+      const xAxis = d3.axisBottom(xScale);
+      const yAxis = d3.axisLeft(yScale);
+
+      svg.append("g")
+        .attr("transform", "translate(0," + (h - padding) + ")")
+        .call(xAxis)
+        .attr("id", "x-axis");
+
+      svg.append("g")
+        .attr("transform", "translate(" + padding + ", 0)")
+        .call(yAxis)
+        .attr("id", "y-axis");
+
+    });
+  </script>
+</body>
+
+</html>
