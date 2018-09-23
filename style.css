@@ -1,3 +1,4 @@
+
 #title {
   text-align: center;
   font-size: 24px;
@@ -11,4 +12,13 @@ svg {
 
 .bar:hover {
   fill: yellow;
+}
+
+div.tooltip {	
+    position: absolute;		    				
+    font: 12px sans-serif;		
+    background: lightyellow;	
+    border: 1px;		
+    border-radius: 8px;			
+    pointer-events: none;			
 }
