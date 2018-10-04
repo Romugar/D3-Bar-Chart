@@ -22,5 +22,5 @@ Build a CodePen.io app that is functionally similar to this: https://codepen.io/
 12. User Story: I can mouse over an area and see a tooltip with a corresponding id="tooltip" which displays more information about the area.
 13. User Story: My tooltip should have a data-date property that corresponds to the data-date of the active area.
 
-* Here is the dataset you will need to complete this project: 
+#### Here is the dataset you will need to complete this project: 
 * https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/master/GDP-data.json
