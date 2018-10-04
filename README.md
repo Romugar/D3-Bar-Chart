@@ -1,6 +1,6 @@
 # Data Visualization Projects: Visualize Data with a Bar Chart for freecodecamp.org
 
-### Build a Bar Chart wirth D3
+### Build a Bar Chart with D3
 
 #### Objective
 
