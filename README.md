@@ -2,6 +2,8 @@
 
 ### Build a Bar Chart with D3
 
+Try it on Codepen: https://codepen.io/Romugar/pen/ZMPKev
+
 #### Objective
 
 Build a CodePen.io app that is functionally similar to this: https://codepen.io/freeCodeCamp/full/GrZVaM.
